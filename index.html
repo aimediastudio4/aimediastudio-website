@@ -14,16 +14,25 @@ padding:50px;
 }
 h1{font-size:40px;}
 p{font-size:20px;color:#ccc;}
-
 .btn{
 background:#00ffa6;
 color:black;
 padding:15px 25px;
-text-decoration:none;
+border:none;
 font-weight:bold;
 border-radius:8px;
-display:inline-block;
 margin-top:20px;
+cursor:pointer;
+}
+input, textarea{
+width:300px;
+padding:12px;
+margin:8px;
+border-radius:6px;
+border:none;
+}
+form{
+margin-top:30px;
 }
 </style>
 </head>
@@ -34,9 +43,33 @@ margin-top:20px;
 <p>Cinematic AI Films & Documentaries</p>
 <p>Autobiography • Political Campaigns • Corporate Films</p>
 
-<a class="btn" href="https://aimediastudio.app.n8n.cloud/webhook/50fa2a40-8e4b-4361-ab3d-61ede8f4b20f">
-Contact Us
-</a>
+<form id="leadForm">
+<input type="text" name="name" placeholder="Your Name" required><br>
+<input type="email" name="email" placeholder="Your Email" required><br>
+<textarea name="message" placeholder="Tell us about your project"></textarea><br>
+<button class="btn" type="submit">Send Request</button>
+</form>
+
+<script>
+document.getElementById("leadForm").addEventListener("submit", async function(e){
+e.preventDefault();
+
+const data = {
+name: this.name.value,
+email: this.email.value,
+message: this.message.value
+};
+
+await fetch("https://aimediastudio.app.n8n.cloud/webhook/50fa2a40-8e4b-4361-ab3d-61ede8f4b20f", {
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body: JSON.stringify(data)
+});
+
+alert("Thank you! We will contact you shortly.");
+this.reset();
+});
+</script>
 
 </body>
 </html>
