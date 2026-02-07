@@ -60,7 +60,7 @@ email: this.email.value,
 message: this.message.value
 };
 
-await fetch("https://aimediastudio.app.n8n.cloud/webhook/50fa2a40-8e4b-4361-ab3d-61ede8f4b20f", {
+https://aimediastudiotechnology.app.n8n.cloud/webhook-test/2a182bcd-4478-4dc6-b006-55b681110a95
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body: JSON.stringify(data)
@@ -72,4 +72,22 @@ this.reset();
 </script>
 
 </body>
-</html>
+</html><script>
+document.getElementById("leadForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  const data = {
+    name: this.name.value,
+    email: this.email.value,
+    message: this.message.value
+  };
+
+  await fetch("PASTE_WEBHOOK_URL_HERE", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+
+  alert("Request Sent Successfully!");
+});
+</script>
